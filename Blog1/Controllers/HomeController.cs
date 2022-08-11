@@ -12,17 +12,14 @@ namespace Blog1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private AppDbContext _ctx;
-
         public HomeController(AppDbContext ctx)
         {
             _ctx = ctx;
         }
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger<HomeController> _logger;
+        private AppDbContext _ctx;
+
+        
 
         public IActionResult Index()
         {
@@ -43,11 +40,10 @@ namespace Blog1.Controllers
             return View(new Post());
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Post post)
+        public async Task<IActionResult> EditAsync(Post post)
         {
             object p = _ctx.Posts.Add(post);
             await _ctx.SaveChangesAsync();
-             
             return RedirectToAction("Index");
         }
 
