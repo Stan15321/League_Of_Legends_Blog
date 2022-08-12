@@ -1,4 +1,5 @@
 ﻿using Blog1.Data;
+using Blog1.Data.Repository;
 using Blog1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,9 +13,10 @@ namespace Blog1.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController(AppDbContext ctx)
+        private IRepository _repo;
+        public HomeController(IRepository repo)
         {
-            _ctx = ctx;
+            _repo = repo;
         }
         private readonly ILogger<HomeController> _logger;
         private AppDbContext _ctx;
@@ -42,9 +44,12 @@ namespace Blog1.Controllers
         [HttpPost]
         public async Task<IActionResult> EditAsync(Post post)
         {
-            object p = _ctx.Posts.Add(post);
-            await _ctx.SaveChangesAsync();
-            return RedirectToAction("Index");
+            _repo.AddPost(post);
+            if (await _repo.SaveChangesAsync())
+            {
+                return RedirectToAction("Index");
+            }
+            else return View(post);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
