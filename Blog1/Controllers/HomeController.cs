@@ -1,4 +1,5 @@
 ﻿using Blog1.Data;
+using Blog1.Data.FileManager;
 using Blog1.Data.Repository;
 using Blog1.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,14 @@ namespace Blog1.Controllers
     public class HomeController : Controller
     {
         private IRepository _repo;
-        public HomeController(IRepository repo)
+        private IFileManager _fileManager;
+
+        public HomeController(
+            IRepository repo,
+            IFileManager fileManager)
         {
             _repo = repo;
+            _fileManager = fileManager;
         }
         private readonly ILogger<HomeController> _logger;
         private AppDbContext _ctx;
@@ -38,48 +44,13 @@ namespace Blog1.Controllers
             var post = _repo.GetPost(id);
             return View(post);
         }
-        [HttpGet]
-        public IActionResult Edit(int? id)
+        [HttpGet("/Image/{image}")]
+        public IActionResult Image(string image)
         {
-            if (id == null)
-            {
-                return View(new Post());
-            }
-            else
-            {
-                var post = _repo.GetPost((int)id);
-                return View(post);
-            }
-
+            var mime = image.Substring(image.LastIndexOf('.') + 1);
+            return new FileStreamResult(_fileManager.ImageStream(image), $"image/{mime}");
         }
-        [HttpPost]
-        public async Task<IActionResult> EditAsync(Post post)
-        {
-
-            if (post.Id > 0)
-            {
-                _repo.UpdatePost(post);
-            }
-            else
-            {
-                _repo.AddPost(post);
-            }
-            _repo.AddPost(post);
-            if (await _repo.SaveChangesAsync())
-            {
-                return RedirectToAction("Index");
-            }
-            else return View(post);
-        }
-        public async Task<IActionResult> Remove(int id)
-        {
-            _repo.RemovePost(id);
-            await _repo.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-            
-
-
+   
             [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
