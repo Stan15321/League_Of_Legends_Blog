@@ -1,71 +1,68 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿body {
+    margin: 0;
+    background-color: lightcoral;
 }
-
-/* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color:crimson;
+    text-decoration: none;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    a:hover {
+        text-decoration: underline;
+    }
+
+
+nav {
+    background-color: mediumturquoise;
+    height: 50px;
+    width: 100%;
+    text-align: center;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    nav a {
+        display: inline-block;
+        padding: 15px;
+    }
+
+
+.main-img {
+    position:relative;
+    height: 600px;
+    background-image: url('../content/static/lunar-eclipse-senna-skin-splash-art-lol-4k-wallpaper-uhdpaper.com-519@1@g.jpg');
+    background-position: center;
+    background-size: cover;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
+.title{
+    position:absolute;
+    color: white;
+    font-size:40px;
+    left:50%;
+    transform: translateX(-50%);
+    top:35%;
+    text-shadow: 0 0 8px black;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.container{
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
 }
+.post{
+    margin: 5px;
+    position:relative;
+    display:flex;
+    height:400px;
+    box-shadow: 0 0 5px 0 black;
+}
+.post img{
+    width:500%;
+    object-fit:cover;
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
 }
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+.post-body{
+    margin:-5px 5px 0;
+    background-color:aqua;
 }
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+.no-shadow{
+    box-shadow:none;
 }

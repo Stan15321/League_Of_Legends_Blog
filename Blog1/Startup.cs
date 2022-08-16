@@ -1,4 +1,5 @@
 using Blog1.Data;
+using Blog1.Data.FileManager;
 using Blog1.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,10 +31,23 @@ namespace Blog1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
-            
-            services.<IdentityUser>()
-                .AddRoles<IdentityRole>()
+
+            services.AddIdentity<IdentityUser,IdentityRole> (options=> 
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+            })
+                //.AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
+
+            services.ConfigureApplicationCookie(options =>{
+                options.LoginPath = "/Auth/Login";
+            });
+
+            services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IFileManager, FileManager>();
 
             services.AddScoped<IRepository, Repository>();
             
@@ -55,6 +69,7 @@ namespace Blog1
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
