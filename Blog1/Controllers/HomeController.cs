@@ -2,6 +2,8 @@
 using Blog1.Data.FileManager;
 using Blog1.Data.Repository;
 using Blog1.Models;
+using Blog1.Models.Comments;
+using Blog1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,15 +25,18 @@ namespace Blog1.Controllers
         {
             _repo = repo;
             _fileManager = fileManager;
+           
         }
         private readonly ILogger<HomeController> _logger;
         private AppDbContext _ctx;
 
         
 
-        public IActionResult Index()
+        public IActionResult Index(string Category)
         {
-            var posts = _repo.GetAllPosts();
+
+            var posts = string.IsNullOrEmpty(Category) ? _repo.GetAllPosts() : _repo.GetAllPosts(Category);
+            //boolean ? true : false 1=1? run : ignore;
             return View(posts);
         }
 
@@ -50,6 +55,39 @@ namespace Blog1.Controllers
             var mime = image.Substring(image.LastIndexOf('.') + 1);
             return new FileStreamResult(_fileManager.ImageStream(image), $"image/{mime}");
         }
+        [HttpPost]
+        public async Task <IActionResult> Comment(CommentViewModel vm) 
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Post",new { id = vm.PostId });
+            }
+            var post = _repo.GetPost(vm.PostId);
+            if (vm.MainCommentId == 0)
+            {
+                post.MainComments = post.MainComments ?? new List<MainComment>();
+
+                post.MainComments.Add(new MainComment
+                {
+                    Message = vm.Message,
+                    Created = DateTime.Now,
+                });
+                _repo.UpdatePost(post);
+            }
+            else
+            {
+                var comment = new SubComment
+                {
+                    MainCommentId = vm.MainCommentId,
+                    Message = vm.Message,
+                    Created = DateTime.Now,
+                };
+                _repo.AddSubComment(comment);
+            }
+            await _repo.SaveChangesAsync();
+            return RedirectToAction("Post", new { id = vm.PostId });
+        }
+
    
             [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

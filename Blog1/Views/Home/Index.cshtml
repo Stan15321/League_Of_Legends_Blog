@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<Post>
 @{
-    
+    ViewBag.Title = "Blog Website";
+    ViewBag.Descriptions = "Blog about League of Legends";
+    ViewBag.Keywords = "blog league of legends champions lore";
 }
 @**<h2>Home Page!</h2>
 
-<img src="~/content/static/lunar-eclipse-senna-skin-splash-art-lol-4k-wallpaper-uhdpaper.com-519@1@g.jpg" width="500" />*@
+    <img src="~/content/static/lunar-eclipse-senna-skin-splash-art-lol-4k-wallpaper-uhdpaper.com-519@1@g.jpg" width="500" />*@
 <div class="main-img">
     <span class="title">League Of Legends</span>
 </div>
@@ -24,12 +26,12 @@
     @foreach (var post in Model)
     {
         var image_path = $"/Image/{post.Image}";
-    <a class="post" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
-        <img src="@image_path" />
-        <span class="title">
-            @post.Title
-        </span>
+        <a class="post" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+            <img src="@image_path" />
+            <span class="title">
+                @post.Title
+            </span>
 
-    </a>
+        </a>
     }
 </div>

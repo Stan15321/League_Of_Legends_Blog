@@ -19,6 +19,52 @@ namespace Blog1.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Blog1.Models.Comments.MainComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("MainComments");
+                });
+
+            modelBuilder.Entity("Blog1.Models.Comments.SubComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MainCommentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainCommentId");
+
+                    b.ToTable("SubComments");
+                });
+
             modelBuilder.Entity("Blog1.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -29,10 +75,19 @@ namespace Blog1.Migrations
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Descriptions")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tags")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -239,6 +294,22 @@ namespace Blog1.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Blog1.Models.Comments.MainComment", b =>
+                {
+                    b.HasOne("Blog1.Models.Post", null)
+                        .WithMany("MainComments")
+                        .HasForeignKey("PostId");
+                });
+
+            modelBuilder.Entity("Blog1.Models.Comments.SubComment", b =>
+                {
+                    b.HasOne("Blog1.Models.Comments.MainComment", null)
+                        .WithMany("SubComments")
+                        .HasForeignKey("MainCommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -288,6 +359,16 @@ namespace Blog1.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Blog1.Models.Comments.MainComment", b =>
+                {
+                    b.Navigation("SubComments");
+                });
+
+            modelBuilder.Entity("Blog1.Models.Post", b =>
+                {
+                    b.Navigation("MainComments");
                 });
 #pragma warning restore 612, 618
         }
