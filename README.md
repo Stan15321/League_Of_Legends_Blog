@@ -1,5 +1,6 @@
-# Blog_For_A_Game
-*** ***Internship_Making_A_Blog*** ***
+## Game_Blog
+
+## Internship_Making_A_Blog: 
 
 On my first and second commits i started with creating Views & Controller, then on my 3-rd commit started working on the Models, also the Database and Managing Posts.
 
