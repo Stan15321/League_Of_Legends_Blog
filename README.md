@@ -1,16 +1,16 @@
 ## Internship Making A Blog
 
-On my first and second commits i started with creating Views & Controller, then on my 3-rd commit started working on the Models, also the Database and Managing Posts.
+- On my first and second commits i started with creating Views & Controller, then on my 3-rd commit started working on the Models, also the Database and Managing Posts.
 
-On my 4-th commit i started working on Identity & Admin Seed also Login & Logout system & Admin Panel.
+- On my 4-th commit i started working on Identity & Admin Seed also Login & Logout system & Admin Panel.
 
-On my 5-th commit i started working on Image Upload & Streaming & Styling with CSS and HTML. Also added Javascript Text Editor to make the posts body look a lot better and easy to edit.
+- On my 5-th commit i started working on Image Upload & Streaming & Styling with CSS and HTML. Also added Javascript Text Editor to make the posts body look a lot better and easy to edit.
 
-On my 6-th commit i started working on Meta Tags, MetaTags are important, because they come into play when we are trying to optimize for a search engines.
+- On my 6-th commit i started working on Meta Tags, MetaTags are important, because they come into play when we are trying to optimize for a search engines.
 
-On my 7-th commit i finlly started working on the Comment section, so people can comment on every post if they have an account.
+- On my 7-th commit i finlly started working on the Comment section, so people can comment on every post if they have an account.
 
-On 8-th commit i did a simple Paggination.
+- On 8-th commit i did a simple Paggination.
 
 Here are some photos:
 **Index page, Logging system, If someone do not have an account, Creating a post with js text editor. And a post with comment section**
