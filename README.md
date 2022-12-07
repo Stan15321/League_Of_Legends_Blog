@@ -12,8 +12,14 @@
 
 - On 8-th commit i did a simple Paggination.
 
-Here are some photos:
-**Index page, Logging system, If someone do not have an account, Creating a post with js text editor. And a post with comment section**
+- Here are some photos:
+
+ -Index page.
+ 
+ -Logging system.
+ ## If someone do not have an account.
+  - Creating a post with js text editor. 
+  - Creating a post with comment section.
 ![image](https://user-images.githubusercontent.com/109627707/192227270-80f2712c-9231-48c4-be89-10249c6ac6a8.png)
 ![image](https://user-images.githubusercontent.com/109627707/192227414-256932e0-7ae6-4d79-bf35-cfa0fd87d205.png)
 ![image](https://user-images.githubusercontent.com/109627707/192227543-ab064cb0-585d-4393-bf00-96ad5fe0d9a8.png)
