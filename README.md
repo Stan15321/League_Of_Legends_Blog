@@ -12,11 +12,13 @@
 
 - On 8-th commit i did a simple Paggination.
 
-- Here are some photos:
+## Here are some photos:
 
- -Index page.
+ - Index page.
  
- -Logging system.
+ - Logging system.
+ 
+ - Creating a post.
  ## If someone do not have an account.
   - Creating a post with js text editor. 
   - Creating a post with comment section.
