@@ -15,9 +15,7 @@
 ## Here are some photos:
 
  - Index page.
- 
  - Logging system.
- 
  - Creating a post.
  ## If someone do not have an account.
   - Creating a post with js text editor. 
