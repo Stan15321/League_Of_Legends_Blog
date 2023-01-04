@@ -12,7 +12,6 @@
 
 - On 8-th commit i did a simple Paggination.
 
-
 ## Here are some photos:
  - Index page.
  - Logging system.
