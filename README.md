@@ -25,10 +25,3 @@
 ![image](https://user-images.githubusercontent.com/109627707/192227543-ab064cb0-585d-4393-bf00-96ad5fe0d9a8.png)
 ![image](https://user-images.githubusercontent.com/109627707/192227741-c68ac449-0048-426c-a797-128a8b0448d9.png)
 ![image](https://user-images.githubusercontent.com/109627707/192229039-afac0693-9268-4b35-bd19-362acfcb739e.png)
-
-
-
-
-
-
-
